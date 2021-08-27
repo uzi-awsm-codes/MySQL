@@ -1,0 +1,9 @@
+ctrl+entr execute
+ctrl+shft+entr execute multiple
+
+view table content
+schemas > Tables > rt click "select rows" 
+
+disable safe update
+set sql_safe_update = 0;
+home > edit > preference > sql edtier > scroll down to safe update un tick

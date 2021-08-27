@@ -1,0 +1,132 @@
+create database cms2;
+
+use cms2;
+
+/*
+create table COURSE_INFO (
+COURSE_CODE varchar(10) PRIMARY KEY,
+COURSE_NAME varchar(20) NOT NULL,
+COURSE_DESCRIPTION varchar(25),
+COURSE_START_DATE date,
+COURSE_DURATION int,
+NO_OF_PARTICIPANTS int,
+COURSE_TYPE char(3)
+);
+
+INSERT INTO COURSE_INFO VALUES('1','CSE','computer science','2000-08-09','4','10','eng');
+INSERT INTO COURSE_INFO VALUES('2','ECE','Electronic Comunication','2001-08-09','4','9','eng');
+INSERT INTO COURSE_INFO VALUES('3','EEE','Electrical Electronics','2000-09-09','4','8','eng');
+INSERT INTO COURSE_INFO VALUES('4','BCA','computer Application','2000-08-17','3','7','bch');
+INSERT INTO COURSE_INFO VALUES('5','BBM','Buisness Management','2004-08-09','3','10','bui');
+
+create table STUDENT_INFO (
+STUDENT_ID varchar(10) PRIMARY KEY,
+FIRST_NAME varchar(20),
+LAST_NAME varchar(25),
+ADDRESS varchar(150)
+);
+
+INSERT INTO STUDENT_INFO VALUES('101','Uzair','Ahmed','1395 Hassan');
+INSERT INTO STUDENT_INFO VALUES('102','vinod','J','banglore');
+INSERT INTO STUDENT_INFO VALUES('103','hyma','k','chennai');
+INSERT INTO STUDENT_INFO VALUES('104','tabasum','shek','hyderabad');
+INSERT INTO STUDENT_INFO VALUES('105','sindu','sindu','pune');
+
+create table STUDENT_COURSES (
+STUDENT_ID varchar(10),
+COURSE_CODE varchar(20),
+CONSTRAINT FK_STUDENT_ID FOREIGN KEY (STUDENT_ID) REFERENCES STUDENT_INFO(STUDENT_ID),
+CONSTRAINT FK_COURSE_CODE FOREIGN KEY (COURSE_CODE) REFERENCES COURSE_INFO(COURSE_CODE)
+);
+
+
+-- create table STUDENT_COURSES (
+-- STUDENT_ID varchar(10) FOREIGN KEY (STUDENT_ID) REFERENCES STUDENT_INFO(STUDENT_ID),
+-- COURSE_CODE varchar(20) FOREIGN KEY (COURSE_CODE) REFERENCES COURSE_INFO(COURSE_CODE)
+-- );
+
+
+INSERT INTO STUDENT_COURSES VALUES('101','1');
+INSERT INTO STUDENT_COURSES VALUES('102','1');
+INSERT INTO STUDENT_COURSES VALUES('103','2');
+INSERT INTO STUDENT_COURSES VALUES('104','4');
+INSERT INTO STUDENT_COURSES VALUES('105','4');
+
+create table COURSE_FEES (
+COURSE_CODE varchar(10),
+BASE_FEES int(10),
+SPECIAL_FEES int(10),
+DISCOUNT int(10),
+CONSTRAINT FK_COURSE_CODE2 FOREIGN KEY (COURSE_CODE) REFERENCES COURSE_INFO(COURSE_CODE),
+CONSTRAINT CK_BASE_FEES CHECK(BASE_FEES >= 15000 AND BASE_FEES > SPECIAL_FEES),
+CONSTRAINT CK_DISCOUNT CHECK(DISCOUNT >= 5 AND DISCOUNT <= 15)
+);
+
+INSERT INTO COURSE_FEES VALUES('1','15000','5000','10');
+INSERT INTO COURSE_FEES VALUES('2','19000','4000','8');
+INSERT INTO COURSE_FEES VALUES('3','20000','1000','14');
+INSERT INTO COURSE_FEES VALUES('4','25000','2000','13');
+INSERT INTO COURSE_FEES VALUES('5','16000','3000','9');
+
+ 
+create table COURSE_FEES_HISTORY (
+COURSE_CODE varchar(10),
+BASE_FEES int(10),
+SPECIAL_FEES int(10),
+CREATED_BY varchar(10),
+UPDATED_BY varchar(10),
+CONSTRAINT FK_COURSE_CODE3 FOREIGN KEY (COURSE_CODE) REFERENCES COURSE_INFO(COURSE_CODE)
+);
+
+INSERT INTO COURSE_FEES_HISTORY VALUES('1','18000','5000','Ram','Ramesh');
+INSERT INTO COURSE_FEES_HISTORY VALUES('2','15000','3000','bala','Ram');
+INSERT INTO COURSE_FEES_HISTORY VALUES('2','16000','2000','Ramesh','bala');
+INSERT INTO COURSE_FEES_HISTORY VALUES('3','15000','5000','vinod','Ramesh');
+INSERT INTO COURSE_FEES_HISTORY VALUES('5','19000','1000','Ram','vinod');
+
+-- drop database student;
+*/
+
+
+-- 1
+alter table COURSE_INFO modify COURSE_CODE varchar(30);
+
+-- 2
+alter table COURSE_INFO modify COURSE_DESCRIPTION varchar(200);
+
+-- 3
+alter table COURSE_INFO add ( COURSE_DURATION int,
+							NO_OF_PARTICIPANTS int,
+							COURSE_TYPE char(3));
+
+-- 4
+alter table COURSE_INFO rename column COURSE to COURSE_name ;
+
+-- 5
+alter table COURSE_INFO rename CMS_COURSE_INFO;
+
+-- 6
+drop table COURSE_INFO;
+
+-- 7
+update cms_COURSE_info 
+set COURSE_name = 'mysql'
+where COURSE_name = 'qracle';
+
+-- 8
+delete from COURSE_info
+where course_name = 'rdbms';
+
+-- 9
+INSERT INTO COURSE_INFO VALUES('6','oracle','database','2004-08-09','3','10','bui');
+INSERT INTO COURSE_INFO VALUES('7','oracle','database','2004-08-09','3','10','bui');
+INSERT INTO COURSE_INFO VALUES('8','core java','java','2004-08-09','3','10','bui');
+
+-- 10
+select course_name from cms_course_info where course_name = 'core java';
+
+-- 11
+select course_name from cms_course_info where course_name = 'core java' and course_code = 302;
+
+-- 12
+select distinct course_name from cms_course_info;
